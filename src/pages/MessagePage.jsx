@@ -10,7 +10,7 @@ import { useJoinChatRoom } from '../hook/useRoomChat';
 import useStatus from '../hook/useStatus';
 import { FaCircle } from 'react-icons/fa';
 import { useConversationSocket } from '../hook/useConversationSocket';
-import NewMessageModal from '../components/Modal/newMessageModal';
+import NewMessageModal from '../components/Modal/NewMessageModal';
 
 function MessagePage() {
     const { conversationId } = useParams();
