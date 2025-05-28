@@ -19,6 +19,7 @@ import { useNotifications } from '../../contexts/NotificationContext';
 import { CiBookmark } from "react-icons/ci";
 import { LuSend } from "react-icons/lu";
 import { useConversationSocket } from '../../hook/useConversationSocket';
+import { useLogout } from '../../hook/useLogout';
 
 function Sidebar({ searchValue, setSearchValue }) {
     const [showMore, setShowMore] = useState(false);
@@ -34,7 +35,6 @@ function Sidebar({ searchValue, setSearchValue }) {
     const { currentUser, loading } = getCurrentUser();
     const location = useLocation();
     const navigate = useNavigate();
-    const { logout } = useSocket();
     const pathname = location.pathname;
     useEffect(() => {
         if (pathname.startsWith("/conversation")) {
@@ -43,6 +43,7 @@ function Sidebar({ searchValue, setSearchValue }) {
             setIsExpanded(false);
         }
     }, [pathname]);
+    const { handleLogout } = useLogout()
 
 
     const handleToggleFrame = (frameName) => {
@@ -224,7 +225,7 @@ function Sidebar({ searchValue, setSearchValue }) {
                     content="Are you sure you want to log out?"
                     confirm="Confirm"
                     to=""
-                    onConfirm={async () => { await logout(); navigate("/"); }}
+                    onConfirm={handleLogout}
                     onCancel={() => setShowLogoutConfirm(false)}
                 />
             )}
