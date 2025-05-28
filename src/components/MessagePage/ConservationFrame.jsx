@@ -5,14 +5,12 @@ import TextareaAutosize from "react-textarea-autosize";
 import EmojiPickerButton from '../EmojiPickerButton';
 import { useMessage } from '../../hook/useMessage';
 import { FaCircle } from 'react-icons/fa';
-import { useSocket } from '../../contexts/SocketContext';
 import { useMessageSocket } from '../../hook/useMessageSocket';
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import { formatSmartTime } from '../../utils/formatDate';
 import { MdDelete } from "react-icons/md";
 import ConfirmModal from '../Modal/ConfirmModal';
 import { BsChatHeart } from "react-icons/bs";
-import NewMessageModal from '../Modal/newMessageModal';
 import { isOnlyEmoji } from '../../utils/checkEmoji';
 
 function ConservationFrame({ senderId, receiver, conversationId, setShowCreateMessageModal }) {
