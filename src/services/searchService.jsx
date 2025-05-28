@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const searchUsersService = async (username) => { 
     await new Promise(resolve => setTimeout(resolve, 500));
-    const res = await axios.get(`http://localhost:5000/users/search`, {
+    const res = await axios.get(`https://social-media-be-y4yd.onrender.com/users/search`, {
         params: { username },
         withCredentials: true,
     });
@@ -11,7 +11,7 @@ export const searchUsersService = async (username) => {
 };
 
 export const searchHashtagsService = async (keyword) => {
-    const res = await axios.get(`http://localhost:5000/posts/hashtags/search`, {
+    const res = await axios.get(`https://social-media-be-y4yd.onrender.com/posts/hashtags/search`, {
         params: { keyword },
         withCredentials: true,
     });

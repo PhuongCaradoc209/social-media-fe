@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/users";
+const API_URL = "https://social-media-be-y4yd.onrender.com/users";
 
 import axios from 'axios';
 

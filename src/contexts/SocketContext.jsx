@@ -10,7 +10,7 @@ export const SocketProvider = ({ children }) => {
     const [currentRoom, setCurrentRoom] = useState(null);
 
     useEffect(() => {
-        const newSocket = io("http://localhost:3001", {
+        const newSocket = io("https://social-media-socket-server.onrender.com/", {
         withCredentials: true,
         autoConnect: true, 
         });

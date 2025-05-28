@@ -4,7 +4,7 @@ import { uploadSingleImage } from "./uploadService";
 // editProfileService.js
 export const editProfile = async (profileData) => {
     try {
-    const res = await fetch(`http://localhost:5000/users/profile/me/update`, {
+    const res = await fetch(`https://social-media-be-y4yd.onrender.com/users/profile/me/update`, {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const editProfile = async (profileData) => {
 };
 
 export const updateCover = async ({ cover_url, cover_public_id }) => {
-    const res = await axios.patch("http://localhost:5000/users/profile/cover", {
+    const res = await axios.patch("https://social-media-be-y4yd.onrender.com/users/profile/cover", {
         cover_url,
         cover_public_id,
     },{

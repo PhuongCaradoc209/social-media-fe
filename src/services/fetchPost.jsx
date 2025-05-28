@@ -10,7 +10,7 @@ export const fetchPost = async (page = 1, userId = null) => {
         queryParams.append('userId', userId);
         }
 
-        const res = await axios.get(`http://localhost:5000/posts?${queryParams.toString()}`,{
+        const res = await axios.get(`https://social-media-be-y4yd.onrender.com/posts?${queryParams.toString()}`,{
             withCredentials: true,
         });
         console.log(res.data);
@@ -24,7 +24,7 @@ export default fetchPost
 
 export const fetchLatestPost = async (userId) => {
     try {
-        const res = await axios.get(`http://localhost:5000/posts/${userId}/latestPost`, {
+        const res = await axios.get(`https://social-media-be-y4yd.onrender.com/posts/${userId}/latestPost`, {
             withCredentials: true,
         });
         return res.data; 

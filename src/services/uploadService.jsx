@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/upload";
+const API_URL = "https://social-media-be-y4yd.onrender.com/upload";
 
 // Upload một ảnh
 export const uploadSingleImage = async (file, type, targetId) => {

@@ -3,11 +3,11 @@ import axios from "axios";
 
 // Create one axios instance
 const API_Conservation = axios.create({
-    baseURL: "http://localhost:5000/conversations",
+    baseURL: "https://social-media-be-y4yd.onrender.com/conversations",
     withCredentials: true,
 });
 const API_Messages = axios.create({
-    baseURL: "http://localhost:5000/messages",
+    baseURL: "https://social-media-be-y4yd.onrender.com/messages",
     withCredentials: true,
 });
 

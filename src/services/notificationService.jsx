@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create one axios instance
 const API = axios.create({
-    baseURL: "http://localhost:5000/notifications",
+    baseURL: "https://social-media-be-y4yd.onrender.com/notifications",
     withCredentials: true,
 });
 

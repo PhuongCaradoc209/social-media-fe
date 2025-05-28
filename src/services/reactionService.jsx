@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:5000/posts";
+const API_URL = "https://social-media-be-y4yd.onrender.com/posts";
 
 export const reactToPost = async (postId, reactionType) => {
     const response = await axios.post(`${API_URL}/react`, {
