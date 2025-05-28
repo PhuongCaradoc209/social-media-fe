@@ -51,7 +51,6 @@ export const sendMessage = async(receiverId, content)=>{
 
 export const getAllMessages = async (conversationId, page = 1) => {
     try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
         const res = await API_Messages.get("/", {
             params: { conversationId, page }
         });

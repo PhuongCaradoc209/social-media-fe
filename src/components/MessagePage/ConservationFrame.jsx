@@ -131,8 +131,6 @@ function ConservationFrame({ senderId, receiver, conversationId, setShowCreateMe
             setPage(1);
             setMessages([]);
             setHasMore(true);
-
-            await new Promise((r) => setTimeout(r, 0));
             if (!isMounted) return;
 
             try {

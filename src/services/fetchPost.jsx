@@ -3,7 +3,6 @@ import React from 'react'
 
 export const fetchPost = async (page = 1, userId = null) => {
     try {
-        await new Promise(resolve => setTimeout(resolve, 500));
         const queryParams = new URLSearchParams({ page });
 
         if (userId) {
