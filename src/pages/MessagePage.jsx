@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import useProfile from '../hook/useProfile';
 import { getCurrentUser } from '../helpers/getCurrentUser';
 import { RiSendPlaneFill } from "react-icons/ri";
-import NewMessageModal from '../components/Modal/newMessageModal';
 import { useConversation } from '../hook/useConversation';
 import { Link, useParams } from 'react-router-dom';
 import ConservationFrame from '../components/MessagePage/ConservationFrame';
@@ -11,6 +10,7 @@ import { useJoinChatRoom } from '../hook/useRoomChat';
 import useStatus from '../hook/useStatus';
 import { FaCircle } from 'react-icons/fa';
 import { useConversationSocket } from '../hook/useConversationSocket';
+import NewMessageModal from '../components/Modal/newMessageModal';
 
 function MessagePage() {
     const { conversationId } = useParams();
