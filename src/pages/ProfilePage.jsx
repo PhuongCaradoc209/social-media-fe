@@ -20,7 +20,7 @@ function ProfilePage() {
   const [selfProfile, setSelfProfile] = useState(false);
   const [activeTab, setActiveTab] = useState("post");
   const [showUploadCoverModal, setShowUploadCoverModal] = useState(false);
-  const {setShowLoading, reloadPosts, reloadProfile, reloadProfileFlag} = useOutletContext();
+  const {setShowLoading, reloadPosts} = useOutletContext();
   const [reloadPostList, setReloadPostList] = useState(false);
   const [coverUrl, setCoverUrl] = useState("");
   const currentUser = useSelector(state => state.user.currentUser); 
