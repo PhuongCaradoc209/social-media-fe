@@ -9,7 +9,7 @@ import { useUploadService } from "../../hook/useUploadService";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../store/userSlice";
 
-const EditProfileModal = ({ onClose, showGlobalToast, setShowLoading, reloadProfile }) => {
+const EditProfileModal = ({ onClose, showGlobalToast, setShowLoading }) => {
   const currentUser = useSelector(state => state.user.currentUser);
   const { profile, loading, error } = useProfile(currentUser?.id);
   const [imageInputType, setImageInputType] = useState("file");
@@ -51,7 +51,6 @@ const EditProfileModal = ({ onClose, showGlobalToast, setShowLoading, reloadProf
     (updatedProfile) => {
       showGlobalToast("Profile updated!", "success");
       dispatch(setCurrentUser(updatedProfile)); // Cập nhật Redux
-      if (reloadProfile) reloadProfile();
       onClose();
     },
     (errMessage) => {
