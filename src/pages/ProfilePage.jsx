@@ -173,9 +173,13 @@ function ProfilePage() {
                       </span>
                     </span>
                   </span>
-                  <span className="text-[1rem] text-gray-500 dark:text-dark-text-subtle font-[400]">
-                    {profile.bio}
-                  </span>
+                  {
+                    profile.bio && (
+                      <span className="text-[1rem] text-gray-500 dark:text-dark-text-subtle font-[400]">
+                        {profile.bio}
+                      </span>
+                    )
+                  }
                 </>
               )}
             </span>
