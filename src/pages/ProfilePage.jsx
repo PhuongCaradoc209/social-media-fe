@@ -63,7 +63,8 @@ function ProfilePage() {
 
   return (
     <div className="md:ml-9 lg:ml-0 flex flex-col items-center pb-18 overflow-x-hidden">
-      <div className="w-full h-96 xl:mb-20 relative mb-28">
+      <div className={`w-full h-96 relative
+                      ${profile?.bio?.trim() ? "mb-28 xl:mb-20 " : "mb-8"}`}>
         <div className="w-full h-4/5 md:rounded-b-4xl bg-cover bg-center relative group"
               style={{
                 backgroundImage: profile?.cover_url
@@ -136,8 +137,9 @@ function ProfilePage() {
             </div>
 
             {/* User Info */}
-            <span className="text-black text-2xl font-bold drop-shadow dark:text-dark-text flex flex-col gap-2 absolute left-[10rem] top-20 
-                            w-[10rem] sm:w-[14rem] lg:w-[20rem] xl:w-[25rem] ">
+          <span className={`text-black text-2xl font-bold drop-shadow dark:text-dark-text flex flex-col gap-2 absolute left-[10rem]
+                          top-16
+                          w-[10rem] sm:w-[14rem] lg:w-[20rem] xl:w-[25rem]`}>
               {loading ? (
                 <>
                   <div className="w-48 h-6 bg-gray-300 rounded animate-pulse"></div>
@@ -187,7 +189,7 @@ function ProfilePage() {
           { selfProfile && 
             <LiaEdit
             size={40}
-            className="absolute bottom-0 right-8 p-2 rounded-xl bg-light-button flex justify-center items-center text-black cursor-pointer hover:bg-light-button-hover transition dark:bg-dark-button dark:hover:bg-dark-button-hover dark:text-dark-text"
+            className="absolute bottom-3 right-8 p-2 rounded-xl bg-light-button flex justify-center items-center text-black cursor-pointer hover:bg-light-button-hover transition dark:bg-dark-button dark:hover:bg-dark-button-hover dark:text-dark-text"
             title="Edit Profile"
             onClick={() => setShowEditModal(true)}
           />}
