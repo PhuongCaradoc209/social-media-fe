@@ -61,14 +61,14 @@ function Layout() {
                     <div className="h-[42rem]"></div>
                     <div className="h-[42rem] "></div>
                     <div className="h-[42rem] "></div> */}
-                    <Outlet context={{ setShowEditModal, setShowCreatePostModal, showGlobalToast, setShowLoading, reloadPosts, setReloadPosts }}/>
+                    <Outlet context={{ setShowEditModal, setShowCreatePostModal, showGlobalToast, setShowLoading, reloadPosts, setReloadPosts}}/>
                 </div>
             </div>
 
             {/* Header bottom (for mobile) */}
             <HeaderBotMB/>
 
-            {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} showGlobalToast={showGlobalToast} setShowLoading={setShowLoading} />}
+            {showEditModal && <EditProfileModal onClose={() => setShowEditModal(false)} showGlobalToast={showGlobalToast} setShowLoading={setShowLoading} reloadProfile={reloadProfile}/>}
             {showCreatePostModal && 
                 <CreatePostModal 
                 onClose={() => setShowCreatePostModal(false)} 

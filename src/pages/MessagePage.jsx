@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useProfile from '../hook/useProfile';
 import { getCurrentUser } from '../helpers/getCurrentUser';
 import { RiSendPlaneFill } from "react-icons/ri";
+import NewMessageModal from '../components/Modal/NewMessageModal';
 import { useConversation } from '../hook/useConversation';
 import { Link, useParams } from 'react-router-dom';
 import ConservationFrame from '../components/MessagePage/ConservationFrame';
@@ -10,12 +11,12 @@ import { useJoinChatRoom } from '../hook/useRoomChat';
 import useStatus from '../hook/useStatus';
 import { FaCircle } from 'react-icons/fa';
 import { useConversationSocket } from '../hook/useConversationSocket';
-import NewMessageModal from '../components/Modal/NewMessageModal';
+import { useSelector } from 'react-redux';
 
 function MessagePage() {
     const { conversationId } = useParams();
-    const {currentUser} = getCurrentUser();
-    const {updateProfileLocally, profile } = useProfile(currentUser?.user?.id);
+    const currentUser = useSelector(state => state.user.currentUser);
+    const {updateProfileLocally, profile } = useProfile(currentUser?.id);
     const [createMessageModal, setShowCreateMessageModal] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(null);
     const {
@@ -34,7 +35,7 @@ function MessagePage() {
     const statusMap = useStatus(partnersIds.map(id => ({ id })));
 
     //JOIN ROOM CONVERSATION
-    const currentUserId = currentUser?.user?.id;
+    const currentUserId = currentUser?.id;
     const receiverId = receiver?.id;
     useJoinChatRoom({ currentUserId, receiverId });
 
@@ -44,7 +45,7 @@ function MessagePage() {
     }, [conversationId]);
 
     //UPDATE CONVERSATION SOCKET
-    useConversationSocket(currentUser?.user?.id, setAllConversation);
+    useConversationSocket(currentUser?.id, setAllConversation);
 
     return (
         <>

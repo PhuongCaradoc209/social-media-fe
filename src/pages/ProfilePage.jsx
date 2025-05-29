@@ -3,7 +3,6 @@ import useProfile from "../hook/useProfile";
 import { LiaEdit } from "react-icons/lia";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 import PostList from "../components/PostList";
-import { getCurrentUser } from "../helpers/getCurrentUser";
 import FollowButton from "../components/FollowButton";
 import useFollowStatus from "../hook/useFollowStatus";
 import DisplayFollowListModal from "../components/Modal/ShowFollowListModal";
@@ -11,20 +10,22 @@ import { useEditProfileService } from "../hook/useEditProfileService";
 import UploadCoverModal from "../components/Modal/UploadCoverModal";
 import { uploadSingleImage } from "../services/uploadService";
 import Media from "../components/Media";
+import { useSelector } from "react-redux";
 
 function ProfilePage() {
   const {id} = useParams();
-  const {currentUser} = getCurrentUser();
-  const {updateProfileLocally, profile, loading, error } = useProfile(id || currentUser?.user?.id);
+  
   const { setShowEditModal, setShowCreatePostModal} = useOutletContext();
   const {handleUpdateCover} = useEditProfileService();
   const [selfProfile, setSelfProfile] = useState(false);
   const [activeTab, setActiveTab] = useState("post");
   const [showUploadCoverModal, setShowUploadCoverModal] = useState(false);
-  const {setShowLoading, reloadPosts} = useOutletContext();
+  const {setShowLoading, reloadPosts, reloadProfile, reloadProfileFlag} = useOutletContext();
   const [reloadPostList, setReloadPostList] = useState(false);
-
   const [coverUrl, setCoverUrl] = useState("");
+  const currentUser = useSelector(state => state.user.currentUser); 
+  const userId = id || currentUser?.id;
+  const { updateProfileLocally, profile, loading, error } = useProfile(userId, currentUser);
   
   const followStatus = useFollowStatus(
     profile?.id && !loading ? profile.id : null,
@@ -36,12 +37,12 @@ function ProfilePage() {
   
   //DETERMINE SELF PROFILE OR NOT
   useEffect(() => {
-    if (!id || Number(id) === currentUser?.user?.id) {
+    if (!id || Number(id) === currentUser?.id) {
       setSelfProfile(true); 
     } else {
       setSelfProfile(false); 
     }
-  }, [id, currentUser?.user?.id,]);
+  }, [id, currentUser?.id,]);
 
   if (error) {
     return <div className="p-4 text-red-500">{error}</div>;
@@ -269,7 +270,7 @@ function ProfilePage() {
         }
         {
           activeTab === "media" && !loading && profile && (
-            <Media userId={profile.id} profile={profile} currentUser={currentUser?.user?.id}/>
+            <Media userId={profile.id} profile={profile} currentUser={currentUser?.id}/>
           )
         }
       </div>
@@ -277,7 +278,7 @@ function ProfilePage() {
       {showFollowListModal && (
         <DisplayFollowListModal
           title={followListType === "followers" ? "Followers" : "Following"}
-          userId={id || currentUser?.user?.id}
+          userId={id || currentUser?.id}
           followListType={followListType}
           onClose={() => setShowFollowListModal(false)}
         />

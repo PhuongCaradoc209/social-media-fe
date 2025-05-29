@@ -2,6 +2,8 @@ import { useState } from "react";
 import { loginUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../contexts/SocketContext";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../store/userSlice";
 
 export const useLogin = () => {
     const [email, setEmail] = useState("");
@@ -10,6 +12,7 @@ export const useLogin = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const { login } = useSocket();
+    const dispatch = useDispatch();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -44,8 +47,9 @@ export const useLogin = () => {
 
             login(userData.user);
 
-            sessionStorage.setItem("currentUser", JSON.stringify(userData));
+            sessionStorage.setItem("currentUser", JSON.stringify(userData.user));
             localStorage.setItem("token", userData.token);
+            dispatch(setCurrentUser(userData.user));
 
             navigate("/home");
         } catch (err) {

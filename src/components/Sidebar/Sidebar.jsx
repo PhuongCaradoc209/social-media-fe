@@ -20,6 +20,7 @@ import { CiBookmark } from "react-icons/ci";
 import { LuSend } from "react-icons/lu";
 import { useConversationSocket } from '../../hook/useConversationSocket';
 import { useLogout } from '../../hook/useLogout';
+import { useSelector } from "react-redux";
 
 function Sidebar({ searchValue, setSearchValue }) {
     const [showMore, setShowMore] = useState(false);
@@ -32,7 +33,7 @@ function Sidebar({ searchValue, setSearchValue }) {
 
     const moreRef = useRef(null);
     const { toggleTheme } = useTheme();
-    const { currentUser, loading } = getCurrentUser();
+    const currentUser = useSelector(state => state.user.currentUser);
     const location = useLocation();
     const navigate = useNavigate();
     const pathname = location.pathname;
@@ -152,16 +153,12 @@ function Sidebar({ searchValue, setSearchValue }) {
                                 ${pathname.startsWith('/profile/me') ? 'font-bold bg-light-hover dark:bg-dark-hover' : 'font-[400]'}`}
                 >
                     <div className={`rounded-full overflow-hidden bg-gray-300 box-border flex items-center justify-center
-                                     ${pathname.startsWith('/profile/me') ? "w-9 h-9 min-w-9 aspect-square border-[2px] border-dark-border dark:border-light-border" : "w-8 h-8"}`}>
-                        {loading ? (
-                            <div className="w-full h-full bg-gray-300 animate-pulse rounded-full" />
-                        ) : (
-                            <img
-                                src={currentUser?.user?.profile_pic_url}
-                                alt="avatar"
-                                className="w-full h-full aspect-square object-cover"
-                            />
-                        )}
+                                    ${pathname.startsWith('/profile/me') ? "w-9 h-9 min-w-9 aspect-square border-[2px] border-dark-border dark:border-light-border" : "w-8 h-8"}`}>
+                        <img
+                            src={currentUser?.profile_pic_url}
+                            alt="avatar"
+                            className="w-full h-full aspect-square object-cover"
+                        />
                     </div>
                     {!isExpanded && <p className="text-md">Profile</p>}
                 </Link>
