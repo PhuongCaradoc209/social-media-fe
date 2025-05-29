@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 export const searchUsersService = async (username) => { 
-    await new Promise(resolve => setTimeout(resolve, 500));
     const res = await axios.get(`https://social-media-be-y4yd.onrender.com/users/search`, {
         params: { username },
         withCredentials: true,
