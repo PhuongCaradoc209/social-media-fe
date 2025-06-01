@@ -105,29 +105,31 @@ function Sidebar({ searchValue, setSearchValue }) {
                          ${isExpanded ? 'md:w-20 border-r-[1px] border-transparent min-w-20' : 
                          'md:w-1/6 border-r-[1px] border-gray-200 dark:border-r-2 dark:border-dark-border min-w-48'}`}>
             <AnimatePresence mode="wait">
-                {!isExpanded ? (
-                    <motion.span
-                        key="text-logo"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.1 }}
-                        className="font-norican-regular text-3xl mb-18 ml-4"
-                    >
-                        Instameow
-                    </motion.span>
-                ) : (
-                    <motion.div
-                        key="icon-logo"
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.5 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="mb-18 ml-4"
-                    >
-                        <LuInstagram size={29} />
-                    </motion.div>
-                )}
+            {!isExpanded ? (
+                <Link to="/home" key="text-logo">
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                    className="font-norican-regular text-3xl mb-18 ml-4 block"
+                >
+                    Instagram
+                </motion.span>
+                </Link>
+            ) : (
+                <Link to="/home" key="icon-logo">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="mb-18 ml-4"
+                >
+                    <LuInstagram size={29} />
+                </motion.div>
+                </Link>
+            )}
             </AnimatePresence>
 
             <div className="flex flex-col gap-2 flex-grow items-center">

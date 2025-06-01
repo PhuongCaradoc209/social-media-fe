@@ -8,19 +8,30 @@ import CaptionTextarea from '../CaptionTextarea';
 import usePostService from '../../hook/usePostService';
 import { useOutletContext } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import AlertToast from './FunctionalityModal.jsx/AlertModel';
 
 function SharePostModal({post, loading, onClose}) {
     const currentUser = useSelector(state => state.user.currentUser);
     const {profile, error } = useProfile(currentUser?.id);
     const [caption, setCaption] = useState("");
     const { fetchSharePost } = usePostService();
-    const { showGlobalToast } = useOutletContext();
+
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
+    const [toastType, setToastType] = useState('error');
+    const showGlobalToast = (message, type = 'error') => {
+        setToastMessage(message);
+        setToastType(type);
+        setShowToast(true);
+    };
 
     const handleShare = async () => {
         try {
             await fetchSharePost(post.id, caption);
             showGlobalToast("Post shared – your friends can see it now.", "success");
-            onClose();
+            setTimeout(() => {
+                onClose();
+            }, 1200);
         } catch (err) {
             console.error("Error sharing post:", err);
             showGlobalToast("Failed to share post.", "error");
@@ -67,6 +78,12 @@ function SharePostModal({post, loading, onClose}) {
                     Share
                 </button>
             </motion.div>
+            <AlertToast
+                show={showToast}
+                message={toastMessage}
+                type={toastType}
+                onClose={() => setShowToast(false)}
+            />
         </div>
     )
 }

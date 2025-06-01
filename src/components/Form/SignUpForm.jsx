@@ -95,13 +95,13 @@ function SignUpForm({ showRegister, setShowRegister, showGlobalToast }) {
             // Gửi dữ liệu đến backend
             const registerResponse = await registerUser(formDataToSend);
             console.log("✅ Register response:", registerResponse);
-    
-            showGlobalToast("Account created successfully!", "success");
         } catch (err) {
             setError(err.error || "Failed to register");
             console.error("❌ Register error:", err);
         } finally {
             setLoading(false);
+            showGlobalToast("Account created successfully!", "success");
+            setShowRegister(false);
         }
     };
 
