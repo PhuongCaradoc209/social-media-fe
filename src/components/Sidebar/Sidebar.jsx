@@ -114,7 +114,7 @@ function Sidebar({ searchValue, setSearchValue }) {
                         transition={{ duration: 0.1 }}
                         className="font-norican-regular text-3xl mb-18 ml-4"
                     >
-                        Instagram
+                        Instameow
                     </motion.span>
                 ) : (
                     <motion.div

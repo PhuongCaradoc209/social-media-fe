@@ -33,7 +33,7 @@ function LogInPage() {
                         transition={{  type: "tween", duration: 0.5, ease: "easeInOut"  }}
                         className="text-center mb-6 flex flex-col gap-2"
                     >
-                        <span className="text-5xl font-norican-regular">Instagram</span>
+                        <span className="text-5xl font-norican-regular">Instameow</span>
                         <span className="text-xl">Discover the world through photos and stories!</span>
                     </motion.div>
                     {/* LOG IN FORM */}

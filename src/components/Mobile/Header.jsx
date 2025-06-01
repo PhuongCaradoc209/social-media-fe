@@ -14,7 +14,7 @@ function HeaderMB({ searchValue, setSearchValue }) {
                             dark:bg-dark dark:text-dark-text
                             flex items-center justify-between px-4"
         >
-            <span className="font-norican-regular text-3xl mr-6">Instagram</span>
+            <span className="font-norican-regular text-3xl mr-6">Instameow</span>
             <div className="flex items-center gap-4 flex-1">
                 <SearchFrameMB searchValue={searchValue} setSearchValue={setSearchValue}/>
                 <Link to="/notification" className="relative cursor-pointer" onClick={()=>markNotificationsAsSeen()}>
